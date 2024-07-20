@@ -5,6 +5,10 @@ import message_icon from './message.png'
 import question_icon from './question.png'
 import history_icon from './history.png'
 import setting_icon from './setting.png'
+import user_icon from './user.png'
+import compass_icon from './compass.png'
+import bulb_icon from './bulb.png'
+import code_icon from './code.png'
 
 export const assets = {
     menu_icon,
@@ -14,4 +18,8 @@ export const assets = {
     question_icon,
     history_icon,
     setting_icon,
+    user_icon,
+    compass_icon,
+    code_icon,
+    bulb_icon,
 }

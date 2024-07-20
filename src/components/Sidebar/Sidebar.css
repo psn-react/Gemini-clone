@@ -9,6 +9,7 @@
   justify-content: space-between;
   background-color: #f0f4f9;
   padding: 25px 15px;
+  /* transition: all 0.5s ease-in-out; */
 }
 
 .sidebar .menu {
