@@ -2,6 +2,8 @@
 
 import PropTypes from "prop-types";
 
+import "./Card.css";
+
 import { assets } from "../../assets/assets";
 
 Card.propTypes = {

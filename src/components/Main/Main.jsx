@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import Card from "../Cards/Card";
-import "@fortawesome/fontawesome-free";
+import SearchBox from "./../Search/Search-box";
 
 const cards = [
   {
@@ -63,16 +63,7 @@ const Main = () => {
             />
           ))}
         </div>
-
-        <div className="main-bottom">
-          <div className="search-box">
-            <input type="text" placeholder="Enter a prompt here . . ." />
-            <div>
-              <img src="" alt="" />
-              <img src="" alt="" />
-            </div>
-          </div>
-        </div>
+        <SearchBox />
       </div>
     </div>
   );

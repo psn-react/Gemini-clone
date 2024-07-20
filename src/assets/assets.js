@@ -9,6 +9,9 @@ import user_icon from './user.png'
 import compass_icon from './compass.png'
 import bulb_icon from './bulb.png'
 import code_icon from './code.png'
+import image_icon from './image.png'
+import mic_icon from './mic.png'
+import send_icon from './send.png'
 
 export const assets = {
     menu_icon,
@@ -22,4 +25,7 @@ export const assets = {
     compass_icon,
     code_icon,
     bulb_icon,
+    image_icon,
+    mic_icon,
+    send_icon
 }
