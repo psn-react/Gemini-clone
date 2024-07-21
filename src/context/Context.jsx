@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 import run from './../config/gemini';
 import { PropTypes } from 'prop-types';
@@ -10,16 +10,44 @@ export const Context = createContext();
 const ContextProvider = (props) => {
 
 
+  const [input,setInput] = useState("");
+  const [recentPrompt, setRecentPrompt] = useState("");
+  const [previousPrompt, setPreviousPrompt] = useState([]);
+  const [showResult,setShowResult] = useState(false);
+  const [loading,setLoading] = useState(false);
+  const [resultData,setResultData] = useState("");
+  const [previousData,setPreviousData] = useState("");
+
   const onSent = async (prompt) => {
-    await run(prompt);
+    
+    console.log("jelly");
+    setResultData("")
+    setLoading(true)
+    const response =  await run(input);
+    setResultData(response)
+    setLoading(false)
+    setInput("")
+
+     await run(input);
   };
 
-  onSent("can u tell me your version?");
+  // onSent("Hello");
 
 
 
   const contextValue = {
-
+    setInput,
+    input,
+    setRecentPrompt,
+    recentPrompt,
+    previousPrompt,
+    setPreviousPrompt,
+    showResult,
+    loading,
+    resultData,
+    onSent,
+    previousData,
+    setPreviousData
 
   };
   

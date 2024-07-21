@@ -1,10 +1,12 @@
 // import React from "react";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import Card from "../Cards/Card";
 import SearchBox from "./../Search/Search-box";
+import { Context } from "../../context/Context";
+import Greet from "../Greet/Greet";
 
 const cards = [
   {
@@ -30,10 +32,10 @@ const Main = () => {
 
   function handleCardSelect(payload) {
     setSelectedCard(payload);
-    if (payload === selectedCard) {
-      setSelectedCard(null);
-    }
+    if (payload === selectedCard) setSelectedCard(null); 
   }
+
+  const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
 
   return (
     <div className="main">
@@ -43,12 +45,9 @@ const Main = () => {
       </div>
 
       <div className="main_container">
-        <div className="greet">
-          <p>
-            <span>Hello, Mg Mg</span>
-          </p>
-          <p>How can i help you today?</p>
-        </div>
+        
+        {/* {} */}
+        <Greet/>
         <div className="cards">
           {/*  */}
 
@@ -63,7 +62,7 @@ const Main = () => {
             />
           ))}
         </div>
-        <SearchBox />
+        <SearchBox setInput={setInput} inPut={input} Sent={onSent}/>
       </div>
     </div>
   );

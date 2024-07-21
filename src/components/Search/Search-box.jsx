@@ -3,16 +3,18 @@
 import { assets } from "../../assets/assets";
 import "./Search_box.css";
 
-const SearchBox = () => {
+const SearchBox = ({setInput,input,Sent}) => {
   return (
-    <>
+   
       <div className="main-bottom">
         <div className="search-box">
-          <input type="text" placeholder="Enter a prompt here . . ." />
+          
+          <input onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder="Enter a prompt here . . ." />
+
           <div className="input_btn_wrap">
             <img src={assets.image_icon} />
             <img src={assets.mic_icon} />
-            <img src={assets.send_icon} />
+            <img src={assets.send_icon} alt="send" onClick={Sent} />
           </div>
         </div>
         <div className="bottom-info">
@@ -22,7 +24,7 @@ const SearchBox = () => {
           </p>
         </div>
       </div>
-    </>
+    
   );
 };
 
