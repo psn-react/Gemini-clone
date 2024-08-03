@@ -1,0 +1,44 @@
+
+
+.result {
+    padding: 0px 5%;
+    max-height: 70vh;
+    overflow-y: scroll;
+
+}
+.result-title {
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.result-title img {
+    width: 30px;
+    border-radius: 40px;
+    opacity: 0.7;
+  }
+  
+
+.result-data img {
+    width: 30px;
+
+}
+
+.result-data p {
+    text-align: justify;
+}
+
+.result-data {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+}
+
+.prev-prompt{
+opacity: 0.7;
+}
+
+.result::-webkit-scrollbar{
+    display: none;
+}

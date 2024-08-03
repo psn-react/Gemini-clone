@@ -70,3 +70,21 @@
   text-align: center;
   font-weight: 300;
 }
+
+.sendBtn{
+  transition: all 0.3s ease-in-out;
+}
+
+.sendBtn:hover{
+  transform: scale(1.02);
+  
+}
+.sendBtn:active{
+  transform: scale(1.2);
+}
+
+.disableInput{
+  opacity: 0.3;
+  cursor: pointer;
+  background-color: rgb(99, 95, 95);
+}

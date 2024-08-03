@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types';
 
 export const Context = createContext();
 
+/* eslint-disable  */
 
 
 const ContextProvider = (props) => {
@@ -19,16 +20,20 @@ const ContextProvider = (props) => {
   const [previousData,setPreviousData] = useState("");
 
   const onSent = async (prompt) => {
+
     
     console.log("jelly");
     setResultData("")
     setLoading(true)
+    setShowResult(true)
+    setRecentPrompt(input)
     const response =  await run(input);
     setResultData(response)
+    // setShowResult(false)
     setLoading(false)
     setInput("")
 
-     await run(input);
+    //  await run(input);
   };
 
   // onSent("Hello");

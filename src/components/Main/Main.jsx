@@ -1,4 +1,5 @@
 // import React from "react";
+/* eslint-disable  */
 
 import { useContext, useState } from "react";
 import "./Main.css";
@@ -7,6 +8,7 @@ import Card from "../Cards/Card";
 import SearchBox from "./../Search/Search-box";
 import { Context } from "../../context/Context";
 import Greet from "../Greet/Greet";
+import Conversation from "../conversation/Conversation";
 
 const cards = [
   {
@@ -46,7 +48,9 @@ const Main = () => {
 
       <div className="main_container">
         
-        {/* {} */}
+        {!showResult ? 
+        <>
+        
         <Greet/>
         <div className="cards">
           {/*  */}
@@ -62,7 +66,17 @@ const Main = () => {
             />
           ))}
         </div>
-        <SearchBox setInput={setInput} inPut={input} Sent={onSent}/>
+        </>
+        : 
+          <Conversation 
+          resultData={resultData} recentPrompt={recentPrompt}
+          />
+        }
+        <SearchBox setInput={setInput} 
+        input={input}
+        Sent={onSent}
+        loading = {loading}
+        />
       </div>
     </div>
   );

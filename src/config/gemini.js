@@ -13,7 +13,8 @@ import {
     GoogleGenerativeAI,
 } from "@google/generative-ai";
 
-const apiKey = "AIzaSyCVGVPo3yR1k7RNBAW0sBGA_vjcEaP1Ed8";
+// const apiKey = "AIzaSyCVGVPo3yR1k7RNBAW0sBGA_vjcEaP1Ed8";
+const apiKey = "AIzaSyAOK1otrCmPuBmBQp78ZqzJfVSzf_iLkIA";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
@@ -33,12 +34,17 @@ async function run(prompt) {
         generationConfig,
         // safetySettings: Adjust safety settings
         // See https://ai.google.dev/gemini-api/docs/safety-settings
-        history: [
-        ],
+        history: [],
     });
 
-    const result = await chatSession.sendMessage(prompt);
-    console.log(result.response.text());
+    try {
+        const result = await chatSession.sendMessage(prompt);
+        console.log("running");
+
+        return result.response.text();
+    } catch (error) {
+        // console.log(error);
+    }
 }
 
 export default run;
