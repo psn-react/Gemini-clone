@@ -5,8 +5,16 @@ import { assets } from "./../../assets/assets";
 import { Context } from "../../context/Context";
 
 const Sidebar = () => {
+
+  const {onSent, previousPrompt, setRecentPrompt, newChat} = useContext(Context);
+
+  const reloadPrompt = async (prompt) => {
+    setRecentPrompt(prompt);
+    await onSent(prompt);
+  }
+
   
-  const {recentPrompt} = useContext(Context)
+  
   const [extended, setExtended] = useState(false);
 
   return (
@@ -19,16 +27,21 @@ const Sidebar = () => {
         />
         <div className="new_chat">
           <img src={assets.plus_icon} alt="" />
-          {extended ? <p>New Chat</p> : null}
+          {extended ? <p onClick={() => newChat()}>New Chat</p> : null}
         </div>
 
-        {extended ? (
+        {extended  ? (
           <div className="recent">
             <p className="recent_title">Recent</p>
-            <div className="recent_entry">
-              <img src={assets.message_icon} alt="" />
-              <p>{recentPrompt}</p>
-            </div>
+            {previousPrompt.slice().reverse().map(( item,i ) => {
+                return (
+                  <div className="recent_entry" key={i} onClick={() => reloadPrompt(item)}>
+                    <img src={assets.message_icon} alt="" />
+                    <p>{item.slice(0,18)} ...</p>
+                </div>
+                )
+            })}
+          
           </div>
         ) : null}
       </div>

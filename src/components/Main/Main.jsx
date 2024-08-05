@@ -1,5 +1,6 @@
 // import React from "react";
 /* eslint-disable  */
+// https://www.youtube.com/watch?v=0yboGn8errU
 
 import { useContext, useState } from "react";
 import "./Main.css";
@@ -37,7 +38,7 @@ const Main = () => {
     if (payload === selectedCard) setSelectedCard(null); 
   }
 
-  const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
+  const {onSent,recentPrompt,showResult,loading,resultData, setInput, input, previousPrompt, previousData} = useContext(Context)
 
   return (
     <div className="main">
@@ -53,8 +54,6 @@ const Main = () => {
         
         <Greet/>
         <div className="cards">
-          {/*  */}
-
           {cards.map((card, i) => (
             <Card
               card={card}
@@ -68,15 +67,27 @@ const Main = () => {
         </div>
         </>
         : 
-          <Conversation 
-          resultData={resultData} recentPrompt={recentPrompt}
-          />
+        
+        <div className="top-result">
+          {loading ?                
+          <div className="loader">
+              <hr/> <hr/> <hr/>
+          </div> 
+          :
+            previousData.map((reply,i) => {
+              return (
+              <Conversation  resultData={reply} recentPrompt={previousPrompt[i]} key={i} loading={loading} />
+              )
+            })
+
+          }
+        </div>
+
+
+        
+        
         }
-        <SearchBox setInput={setInput} 
-        input={input}
-        Sent={onSent}
-        loading = {loading}
-        />
+        <SearchBox setInput={setInput}  input={input} Sent={onSent} loading={loading}/>
       </div>
     </div>
   );

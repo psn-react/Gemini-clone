@@ -5,26 +5,30 @@ import { assets } from "../../assets/assets"
 import  PropTypes  from 'prop-types';
 import "./conversation.css" 
 
-const Conversation = ({resultData, recentPrompt}) =>  {
+const Conversation = ({resultData, recentPrompt, loading}) =>  {
 
 // const {recentPrompt,resultData} = useContext(Context)
 // console.log(resultData);
 return (
     <>
         <div className="result">          
-            <div className="result-title">
-                <img src={assets.user_icon} alt="user_icon" />
-                <p className="prev-prompt">{recentPrompt}</p>
-            </div>
+               
+                <div className="result-title">
+                    <img src={assets.user_icon} alt="user_icon" />
+                        <p className="prev-prompt" >
+                            {recentPrompt}
+                        </p>
+                </div> 
+                
 
             <div className="result-data">
-                <img src={assets.gemini_icon} alt="" />
-                <p dangerouslySetInnerHTML={{ __html:resultData }}>
-                   
-                </p>
-                {/* <p>
-                    {resultData}
-                </p> */}
+                <img className={loading ? 'responseIcon': ''} src={assets.gemini_icon} alt="" />
+
+            
+                <p dangerouslySetInnerHTML={{ __html:resultData }} ></p>                        
+                    
+                
+
             </div>
 
         </div>
@@ -35,6 +39,9 @@ return (
 export default Conversation
 
 Conversation.propTypes = {
-    recentPrompt : PropTypes.string,
+    recentPrompt : PropTypes.any,
     resultData : PropTypes.any,
+    loading: PropTypes.bool
 }
+
+

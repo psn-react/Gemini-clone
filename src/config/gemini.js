@@ -13,8 +13,9 @@ import {
     GoogleGenerativeAI,
 } from "@google/generative-ai";
 
-// const apiKey = "AIzaSyCVGVPo3yR1k7RNBAW0sBGA_vjcEaP1Ed8";
 const apiKey = "AIzaSyAOK1otrCmPuBmBQp78ZqzJfVSzf_iLkIA";
+// const apiKey = "AIzaSyCVGVPo3yR1k7RNBAW0sBGA_vjcEaP1Ed8";
+// const apiKey = "AIzaSyBteUijyw2J5ZEiw2N84ZSwHqi90xZ_jDw";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
@@ -39,8 +40,6 @@ async function run(prompt) {
 
     try {
         const result = await chatSession.sendMessage(prompt);
-        console.log("running");
-
         return result.response.text();
     } catch (error) {
         // console.log(error);

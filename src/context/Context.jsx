@@ -17,21 +17,65 @@ const ContextProvider = (props) => {
   const [showResult,setShowResult] = useState(false);
   const [loading,setLoading] = useState(false);
   const [resultData,setResultData] = useState("");
-  const [previousData,setPreviousData] = useState("");
+  const [previousData,setPreviousData] = useState([]);
+
+
+  const delayParagraph = (i, eachWord) => {
+    setTimeout(() => {
+      setResultData(pre => pre + eachWord);
+    }, 60 * i);
+  }
+
+  const newChat = () => {
+    setLoading(false)
+    setShowResult(false)
+  }
 
   const onSent = async (prompt) => {
 
     
-    console.log("jelly");
-    setResultData("")
-    setLoading(true)
-    setShowResult(true)
-    setRecentPrompt(input)
-    const response =  await run(input);
-    setResultData(response)
-    // setShowResult(false)
-    setLoading(false)
-    setInput("")
+    try {
+      setResultData("")
+      setLoading(true)
+      setShowResult(true)
+      let response;
+
+      if(prompt !== undefined) {
+  
+        response =  await run(prompt);
+        setRecentPrompt(prompt)
+      
+      }else{
+
+        setPreviousPrompt(prev => [...prev,input]);
+        setRecentPrompt(input)
+        response =  await run(input);
+      }
+      
+      let responseArray = await response.split("**");
+      let newResponse;
+  
+      responseArray.forEach((e,i)=> {
+        if(i == 0 || i%2 !== 1 ) newResponse += e
+        newResponse += "<b>" + responseArray[i] + "</b>"
+      });
+  
+      let newResponse_2 = newResponse.split("*").join("</br>");
+  
+      setPreviousData(prevData => [...prevData,newResponse_2]);
+      
+      newResponse_2.split(" ").forEach((e,i) => {
+        delayParagraph( i , e + " " )
+      });
+    } catch (error) {
+      console.log(error);
+      
+    } finally {   
+      setLoading(false)
+      setInput("")
+    }
+
+  
 
     //  await run(input);
   };
@@ -52,7 +96,9 @@ const ContextProvider = (props) => {
     resultData,
     onSent,
     previousData,
-    setPreviousData
+    setPreviousData,
+    previousData,
+    newChat
 
   };
   
